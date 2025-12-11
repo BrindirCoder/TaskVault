@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Dashboard</title>
+
+    <style>
+        /* ---- GLOBAL STYLE ---- */
+        body {
+            margin: 0;
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: linear-gradient(135deg, #e8eef9, #f5f7fb);
+            color: #333;
+        }
+
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        /* ---- NAVBAR ---- */
+        .navbar {
+            background: #1f74ff;
+            padding: 18px 25px;
+            color: white;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            box-shadow: 0 2px 15px rgba(0,0,0,0.15);
+        }
+
+        .navbar h2 {
+            margin: 0;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .user {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            font-size: 16px;
+        }
+
+        .user a {
+            background: rgba(255,255,255,0.2);
+            padding: 8px 14px;
+            border-radius: 8px;
+            backdrop-filter: blur(4px);
+            transition: 0.3s;
+        }
+
+        .user a:hover {
+            background: rgba(255,255,255,0.35);
+        }
+
+        /* ---- CONTAINER ---- */
+        .container {
+            max-width: 1150px;
+            margin: 35px auto;
+            padding: 0 20px;
+        }
+
+        /* ---- WELCOME BOX ---- */
+        .welcome-box {
+            background: rgba(255,255,255,0.7);
+            padding: 30px;
+            border-radius: 14px;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 8px 28px rgba(0,0,0,0.08);
+            margin-bottom: 35px;
+            animation: fadeIn 0.7s ease;
+        }
+
+        .welcome-box h3 {
+            font-size: 30px;
+            margin: 0 0 10px;
+            color: #222;
+        }
+
+        .welcome-box p {
+            margin: 0;
+            font-size: 17px;
+            color: #666;
+        }
+
+        /* ---- CARDS GRID ---- */
+        .cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 25px;
+        }
+
+        /* ---- CARD ---- */
+        .card {
+            background: rgba(255,255,255,0.77);
+            padding: 25px;
+            border-radius: 16px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.10);
+            transition: 0.3s ease;
+            backdrop-filter: blur(10px);
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 16px 35px rgba(0,0,0,0.15);
+        }
+
+        .card h4 {
+            font-size: 22px;
+            margin-bottom: 15px;
+            color: #222;
+        }
+
+        /* ---- BUTTON ---- */
+        .btn {
+            display: inline-block;
+            background: #1f74ff;
+            color: white;
+            padding: 12px 22px;
+            border-radius: 10px;
+            font-size: 16px;
+            transition: 0.3s ease;
+        }
+
+        .btn:hover {
+            background: #0057da;
+            transform: scale(1.05);
+        }
+
+        /* ---- ANIMATIONS ---- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @media (max-width: 600px) {
+            .navbar h2 {
+                font-size: 22px;
+            }
+            .welcome-box h3 {
+                font-size: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <!-- NAVBAR -->
+    <div class="navbar">
+        <h2>User Dashboard</h2>
+        <div class="user">
+            <a href="{{url_for('logout')}}">Logout</a>
+            <span>{{username}}</span>
+        </div>
+    </div>
+
+    <!-- MAIN CONTENT -->
+    <div class="container">
+
+        <!-- WELCOME BOX -->
+        <div class="welcome-box">
+            <h3>Welcome back, {{username}} 👋</h3>
+            <p>Here is a quick overview of your account.</p>
+        </div>
+
+        <!-- CARDS -->
+        <div class="cards">
+
+            <!-- Task Card -->
+            <div class="card">
+                <h4>Tasks</h4>
+                <a class="btn" href="{{url_for('task')}}">Open Tasks</a>
+            </div>
+
+        </div>
+
+    </div>
+
+</body>
+</html>
